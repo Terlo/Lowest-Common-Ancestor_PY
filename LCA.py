@@ -9,37 +9,40 @@ class Node:
 
 
 _result = Node(0)
-
+p = Node(0)
+q=  Node(0)
+   
 def LowestCommonAncestor(p, q, root):
-    root = Node()
-    if not root:
+    if root == None:
         return None
-    print(f"LOWEST COMMON ANCESTOR FOR NODE{int} and node {int} is {int}",p.val,q.val,)
-    current = Node()
+    left =False
+    right = False
+    current = False
+
     left = LowestCommonAncestor(root.left,p,q)
     right =LowestCommonAncestor(root.right,p,q)
-    current =  (root.val == p or root.val  == q)
-    if right and left:
-        return root
-    if left and current:
-        return root
-    if right and current:
+    current =  (root == p or root == q)
+    if (right and left) or (left and current) or (right and current):
         return root
     return right or left or current
     
 
 
 def main():
-    a = Node(val=1)
-    b = Node(val=2)
-    c = Node(val=3)
-    d = Node(val=4)
-    e = Node(val=5)
-    f = Node(val=6)
-    g = Node(val=7)
+    a = Node(1)
+    b = Node(2)
+    c = Node(3)
+    d = Node(4)
+    e = Node(5)
+    f = Node(6)
+    g = Node(7)
 
-    LowestCommonAncestor(a, d, g);
+    print("running the lca function")
+    LowestCommonAncestor(a, d, g)
         
+
+main()
+print(f"LOWEST COMMON ANCESTOR FOR NODE{int} and node {int} is {int}",p.val,q.val,_result.val)
 
 
 
