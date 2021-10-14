@@ -8,41 +8,46 @@ class Node:
 
 
 
-_result = Node(0)
-p = Node(0)
-q=  Node(0)
-   
-def LowestCommonAncestor(p, q, root):
-    if root == None:
-        return None
-    left =False
-    right = False
-    current = False
 
-    left = LowestCommonAncestor(root.left,p,q)
-    right =LowestCommonAncestor(root.right,p,q)
-    current =  (root == p or root == q)
-    if (right and left) or (left and current) or (right and current):
-        return root
-    return right or left or current
-    
+class LCA:
+    def LowestCommonAncestor(self,p:'Node',q:'Node', root:'Node') -> 'Node':
+        self.result= None 
 
+        def search(node):
+            if not node:
+                return False
+            left = search(node.left)
+            right = search(node.right)
+            current = node==p or node ==q
+            if (left and right) or (current and right) or (current and left):
+                self.result = node
+                return
+            return left or right or current
+        search(root)
+        return self.result            
 
 def main():
     a = Node(1)
     b = Node(2)
     c = Node(3)
-    d = Node(4)
-    e = Node(5)
-    f = Node(6)
-    g = Node(7)
+    # d = Node(4)
+    # e = Node(5)
+    # f = Node(6)
+    # g = Node(7)
+
+    a.left = b
+    a.right = c 
+
+    lcatest= LCA()
 
     print("running the lca function")
-    LowestCommonAncestor(a, d, g)
+    result = lcatest.LowestCommonAncestor(c, b, a)
+
+    print(f"the lca is {result.val}")
         
 
 main()
-print(f"LOWEST COMMON ANCESTOR FOR NODE{int} and node {int} is {int}",p.val,q.val,_result.val)
+
 
 
 
